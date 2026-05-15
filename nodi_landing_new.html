@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NODI – Campagna Tesseramento 2026</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-0dqmMfaWv+4HuO7ytfHiAuc8uVv3qr8TaegYsnASZwqNUhA6/hEn4cJTZGxZjdrkjulUOye9wJ/ijTr1EU6ppw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Colour palette inspired by screenshot */
+        :root {
+            --dark-green: #0e543f;
+            --green: #1a7f5b;
+            --light-green: #eaf6ed;
+            --accent-green: #53a37b;
+            --gray: #f5f5f5;
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Header navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            font-size: 1.3rem;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar nav a {
+            text-decoration: none;
+            color: var(--dark-green);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .navbar nav a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero section */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, var(--light-green), var(--white));
+            padding: 4rem 2rem 3rem;
+        }
+        .hero-content {
+            flex: 1 1 50%;
+        }
+        .hero h1 {
+            font-family: 'Lora', serif;
+            font-size: 2.8rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 550px;
+        }
+        .hero .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero .hero-buttons a {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .btn-primary {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background-color: var(--green);
+        }
+        .btn-secondary {
+            border: 2px solid var(--dark-green);
+            color: var(--dark-green);
+        }
+        .btn-secondary:hover {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+        .hero-image {
+            flex: 1 1 40%;
+            text-align: right;
+        }
+        .hero-image img {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Info section */
+        .info-section {
+            background-color: var(--white);
+            padding: 3rem 2rem;
+        }
+        .info-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .info-card {
+            flex: 1 1 30%;
+            background-color: var(--light-green);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-card .icon-circle {
+            background-color: var(--dark-green);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+        }
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark-green);
+            margin-bottom: 0.6rem;
+        }
+        .info-card p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* Membership & donation section */
+        .forms-section {
+            background-color: var(--gray);
+            padding: 3rem 2rem;
+        }
+        .forms-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .form-box {
+            flex: 1 1 45%;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .form-box h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+            font-size: 1.5rem;
+        }
+        .toggle-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .toggle-buttons button {
+            flex: 1;
+            padding: 0.6rem 0.4rem;
+            border: 2px solid var(--dark-green);
+            background-color: var(--white);
+            color: var(--dark-green);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .toggle-buttons button.active,
+        .toggle-buttons button:hover {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form .form-group {
+            margin-bottom: 0.8rem;
+        }
+        form label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            color: var(--dark-green);
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="number"],
+        form textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        form textarea {
+            resize: vertical;
+        }
+        .donation-amounts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .donation-amounts button {
+            flex: 1 1 20%;
+            padding: 0.5rem 0.3rem;
+            border: 2px solid var(--dark-green);
+            border-radius: 6px;
+            background-color: var(--white);
+            color: var(--dark-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .donation-amounts button.selected,
+        .donation-amounts button:hover {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+        .form-box .privacy {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+        }
+        .form-box button.submit-btn {
+            padding: 0.8rem;
+            background-color: var(--dark-green);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .form-box button.submit-btn:hover {
+            background-color: var(--green);
+        }
+
+        /* Mission section */
+        .mission-section {
+            background-color: var(--white);
+            padding: 3rem 2rem;
+        }
+        .mission-section .content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .mission-section h2 {
+            font-size: 2rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+        .mission-section p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .mission-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .mission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        .mission-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        .mission-item span {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        /* Contact & footer */
+        .contact-section {
+            background-color: var(--light-green);
+            padding: 3rem 2rem;
+        }
+        .contact-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .contact-card {
+            flex: 1 1 45%;
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+        .contact-card ul {
+            list-style: none;
+        }
+        .contact-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+        .contact-card li i {
+            color: var(--dark-green);
+            font-size: 1rem;
+        }
+        .footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-image {
+                margin-top: 2rem;
+            }
+            .forms-wrapper {
+                flex-direction: column;
+            }
+            .info-card {
+                flex: 1 1 100%;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script>
+        // Script to toggle membership buttons and donation amounts
+        document.addEventListener('DOMContentLoaded', function() {
+            const membershipButtons = document.querySelectorAll('.toggle-buttons button');
+            membershipButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    membershipButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    // update hidden input value
+                    const membershipTypeInput = document.getElementById('membershipType');
+                    membershipTypeInput.value = btn.getAttribute('data-value');
+                });
+            });
+            const amountButtons = document.querySelectorAll('.donation-amounts button');
+            amountButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    amountButtons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    const otherAmountInput = document.getElementById('otherAmount');
+                    if (btn.getAttribute('data-amount') === 'other') {
+                        otherAmountInput.style.display = 'block';
+                    } else {
+                        otherAmountInput.style.display = 'none';
+                        otherAmountInput.value = '';
+                    }
+                    document.getElementById('donationAmount').value = btn.getAttribute('data-amount');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="nodi_logo_only.jpg" alt="NODI logo" />
+                NODI
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#mission">Missione</a></li>
+                    <li><a href="#forms">Associati</a></li>
+                    <li><a href="#donazioni">Dona</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Costruiamo comunità e opportunità ad Avellino</h1>
+            <p>Unisciti alla nostra campagna di tesseramento 2026 per sostenere l’associazione NODI. Insieme possiamo rafforzare il legame con il territorio, creare opportunità e contrastare lo spopolamento.</p>
+            <div class="hero-buttons">
+                <a href="#forms" class="btn-primary">Associa ora</a>
+                <a href="#donazioni" class="btn-secondary">Fai una donazione</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="nodi_logo_only.jpg" alt="Illustrazione NODI">
+        </div>
+    </section>
+
+    <!-- Info cards section -->
+    <section class="info-section">
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="icon-circle"><i class="fa-solid fa-people-group"></i></div>
+                <h3>Comunità</h3>
+                <p>Creiamo connessioni e legami tra persone, idee e competenze per dare vita a una comunità attiva e solidale.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Progetti</h3>
+                <p>Progettiamo e realizziamo iniziative culturali, sociali e formative per far crescere Avellino e il suo territorio.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-circle"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h3>Sostegno</h3>
+                <p>Sosteniamo giovani e talenti locali creando opportunità per restare, tornare o investire nella nostra provincia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forms section: Membership and Donation -->
+    <section id="forms" class="forms-section">
+        <div class="forms-wrapper">
+            <!-- Membership form -->
+            <div class="form-box">
+                <h3>Associati a NODI</h3>
+                <div class="toggle-buttons">
+                    <button type="button" data-value="nuova" class="active">Nuova iscrizione</button>
+                    <button type="button" data-value="rinnovo">Rinnovo tessera</button>
+                </div>
+                <form action="mailto:associazionenodi@gmail.com" method="post" enctype="text/plain" onsubmit="return confirm('Inviare i dati?');">
+                    <input type="hidden" id="membershipType" name="Tipo di tesseramento" value="nuova" />
+                    <div class="form-group">
+                        <label for="fullName">Nome e Cognome</label>
+                        <input type="text" id="fullName" name="Nome e Cognome" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Comune di residenza</label>
+                        <input type="text" id="city" name="Comune" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messaggio (opzionale)</label>
+                        <textarea id="message" name="Messaggio" rows="3"></textarea>
+                    </div>
+                    <div class="privacy">
+                        <input type="checkbox" id="privacy" required />
+                        <label for="privacy">Acconsento al trattamento dei miei dati secondo l’informativa sulla privacy.</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Invia richiesta</button>
+                </form>
+            </div>
+            <!-- Donation form -->
+            <div id="donazioni" class="form-box">
+                <h3>Fai una donazione</h3>
+                <div class="donation-amounts">
+                    <button type="button" data-amount="10">€10</button>
+                    <button type="button" data-amount="25">€25</button>
+                    <button type="button" data-amount="50">€50</button>
+                    <button type="button" data-amount="other">Altro</button>
+                </div>
+                <form action="mailto:associazionenodi@gmail.com" method="post" enctype="text/plain" onsubmit="return confirm('Inviare i dati?');">
+                    <input type="hidden" id="donationAmount" name="Importo" value="" />
+                    <div class="form-group" id="otherAmount" style="display:none;">
+                        <label for="amountCustom">Importo (EUR)</label>
+                        <input type="number" id="amountCustom" name="Importo personalizzato" min="1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="donorName">Nome e Cognome</label>
+                        <input type="text" id="donorName" name="Nome e Cognome" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="donorEmail">Email</label>
+                        <input type="email" id="donorEmail" name="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="donorMessage">Messaggio (opzionale)</label>
+                        <textarea id="donorMessage" name="Messaggio" rows="3"></textarea>
+                    </div>
+                    <div class="privacy">
+                        <input type="checkbox" id="privacyDonate" required />
+                        <label for="privacyDonate">Acconsento al trattamento dei miei dati secondo l’informativa sulla privacy.</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Invia donazione</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission section -->
+    <section id="mission" class="mission-section">
+        <div class="content">
+            <h2>La nostra missione</h2>
+            <p>NODI nasce per essere un punto di connessione tra persone, idee e competenze. Il nostro obiettivo è rafforzare il legame con la provincia di Avellino e contrastare lo spopolamento offrendo opportunità e supporto a chi desidera restare o tornare.</p>
+            <div class="mission-list">
+                <div class="mission-item"><i class="fa-solid fa-users"></i><span>Organizziamo incontri che generano competenze e relazioni durature.</span></div>
+                <div class="mission-item"><i class="fa-solid fa-handshake"></i><span>Creiamo spazi di confronto, co-working e crescita professionale per i giovani.</span></div>
+                <div class="mission-item"><i class="fa-solid fa-seedling"></i><span>Gettiamo le basi per far nascere opportunità qui, nella nostra terra.</span></div>
+                <div class="mission-item"><i class="fa-solid fa-network-wired"></i><span>Costruiamo reti che permettono di restare, tornare o investire in Irpinia.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact and footer -->
+    <section id="contatti" class="contact-section">
+        <div class="contact-wrapper">
+            <div class="contact-card">
+                <h3>Contatti</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Via della Neve 9, Avellino</li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:associazionenodi@gmail.com" style="color: inherit; text-decoration: none;">associazionenodi@gmail.com</a></li>
+                    <li><i class="fa-solid fa-globe"></i> <a href="https://www.instagram.com/" style="color: inherit; text-decoration: none;">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="contact-card">
+                <h3>Link utili</h3>
+                <ul>
+                    <li><a href="#mission" style="color: var(--dark-green); text-decoration: none;">Chi siamo</a></li>
+                    <li><a href="#forms" style="color: var(--dark-green); text-decoration: none;">Iscriviti</a></li>
+                    <li><a href="#donazioni" style="color: var(--dark-green); text-decoration: none;">Dona ora</a></li>
+                    <li><a href="#" style="color: var(--dark-green); text-decoration: none;">Eventi</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        © 2026 NODI Avellino – Tutti i diritti riservati.
+    </footer>
+</body>
+</html>
